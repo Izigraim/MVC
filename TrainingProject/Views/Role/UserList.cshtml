@@ -1,0 +1,19 @@
+﻿@using TrainingProject.Models
+@model IEnumerable<ApplicationUser>
+
+@{
+    ViewBag.Title = "List of users";
+}
+
+<h2>List of users</h2>
+<table class="table">
+    @foreach (ApplicationUser user in Model)
+    {
+        <tr>
+            <td>@user.Email</td>
+            <td>
+                @Html.ActionLink("Edit role", "Edit", "Role", new { userId = user.Id }, new { @class = "btn btn-sm btn-primary" })
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,6 @@
+﻿@model TrainingProject.Models.CheckBoxListItem
+
+@Html.HiddenFor(x => x.Id)
+@Html.CheckBoxFor(x => x.isChecked)
+@Html.LabelFor(x => x.isChecked, Model.Id)
+<br />

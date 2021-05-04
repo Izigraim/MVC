@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNet.Identity.EntityFramework;
+@using TrainingProject.ViewModels;
+@model ChangeRoleViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Change role for a user: @Model.UserEmail</h2>
+ 
+@using (Html.BeginForm())
+{
+    @Html.Hidden("userId", Model.UserId)
+    @Html.EditorFor(x => x.Roles)
+    <input type="submit" value="Save" />
+}

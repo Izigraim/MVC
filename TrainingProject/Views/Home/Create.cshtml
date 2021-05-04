@@ -1,0 +1,12 @@
+﻿@using TrainingProject.Models
+@model CreatedFile
+
+@using (Html.BeginForm())
+{
+    <p>File name: @Html.TextBoxFor(x => x.Name)</p>
+    @Html.CheckBoxFor(x => x.IsFolder)
+    @Html.LabelFor(x => x.IsFolder)
+    @Html.Hidden("path", Request.UrlReferrer.AbsolutePath)
+
+    <input type="submit" value="Create" />
+}

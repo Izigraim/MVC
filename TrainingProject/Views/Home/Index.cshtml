@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@using TrainingProject.Models
+@model IEnumerable<FileSystemItem>
+
+@if (User.IsInRole("Admin") && (Model.Count() != 0 && Model.First().FileType != FileType.Drive) || (User.IsInRole("Admin") && Model.Count() == 0))
+{
+    <button>@Html.ActionLink("Create new file", "Create")</button>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Date modified</td>
+            <td>Type</td>
+            <td>Size</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (FileSystemItem item in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(item.Name, "Index", new { url = item.Url })</td>
+                <td>@item.LastTimeWrite</td>
+                <td>@item.FileType</td>
+                @if (item.Lenght == null)
+                {
+                    <td></td>
+                }
+                else
+                {
+                    <td>@item.Lenght KB</td>
+                }
+                @if (User.IsInRole("Admin") && item.FileType != FileType.Drive)
+                {
+                    <td>@Html.ActionLink("Delete", "Delete", new { path = item.Path })</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
